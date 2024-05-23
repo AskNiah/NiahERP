@@ -392,6 +392,7 @@ class account_journal(models.Model):
             *self.env['account.move.line']._check_company_domain(self.env.companies),
             ('statement_line_id', '=', False),
             ('parent_state', '=', 'posted'),
+            ('payment_id', '=', False),
       ] + expression.OR(misc_domain)
 
         misc_totals = {
@@ -548,6 +549,9 @@ class account_journal(models.Model):
                 'sum_late': currency.format(sum_late),
                 'has_sequence_holes': journal.has_sequence_holes,
                 'is_sample_data': is_sample_data_by_journal_id[journal.id],
+                # 'entries_count' is kept here to maintain compatibility with a view for the stable version.
+                # The name will be changed in master
+                'entries_count': not is_sample_data_by_journal_id[journal.id],
             })
 
     def _fill_general_dashboard_data(self, dashboard_data):
@@ -741,7 +745,7 @@ class account_journal(models.Model):
         """ This function is called by the "Import" button of Vendor Bills,
         visible on dashboard if no bill has been created yet.
         """
-        self.env['onboarding.onboarding.step'].action_validate_step('account.onboarding_onboarding_step_setup_bill')
+        self.env['onboarding.onboarding.step'].sudo().action_validate_step('account.onboarding_onboarding_step_setup_bill')
 
         new_wizard = self.env['account.tour.upload.bill'].create({})
         view_id = self.env.ref('account.account_tour_upload_bill').id

@@ -18,6 +18,7 @@ class ProductProduct(models.Model):
     _inherits = {'product.template': 'product_tmpl_id'}
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'priority desc, default_code, name, id'
+    _check_company_domain = models.check_company_domain_parent_of
 
     # price_extra: catalog extra value only, sum of variant extra attributes
     price_extra = fields.Float(
@@ -554,7 +555,7 @@ class ProductProduct(models.Model):
                 domain2 = expression.AND([domain, domain2])
                 product_ids = list(self._search(domain2, limit=limit, order=order))
             if not product_ids and operator in positive_operators:
-                ptrn = re.compile('(\[(.*?)\])')
+                ptrn = re.compile(r'(\[(.*?)\])')
                 res = ptrn.search(name)
                 if res:
                     product_ids = list(self._search([('default_code', '=', res.group(2))] + domain, limit=limit, order=order))

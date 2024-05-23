@@ -59,6 +59,23 @@ msgstr ""
 #. odoo-python
 #: code:addons/website/models/website_rewrite.py:0
 #, python-format
+msgid ""
+"\"URL to\" cannot be set to \"/\". To change the homepage content, use the "
+"\"Homepage URL\" field in the website settings or the page properties on any"
+" custom page."
+msgstr ""
+
+#. module: website
+#. odoo-python
+#: code:addons/website/models/website_rewrite.py:0
+#, python-format
+msgid "\"URL to\" cannot be set to an existing page."
+msgstr ""
+
+#. module: website
+#. odoo-python
+#: code:addons/website/models/website_rewrite.py:0
+#, python-format
 msgid "\"URL to\" can not be empty."
 msgstr "„URL către” nu poate fi gol"
 
@@ -12645,7 +12662,7 @@ msgstr "Vom reveni în curând."
 #: code:addons/website/static/src/client_actions/configurator/configurator.xml:0
 #, python-format
 msgid "We'll set you up and running in"
-msgstr "Îl vom pune in funcțiune în"
+msgstr "Îl vom pune în funcțiune în"
 
 #. module: website
 #: model_terms:ir.ui.view,arch_db:website.new_page_template_about_full_s_text_image
@@ -13867,7 +13884,7 @@ msgstr "placeholder"
 #: code:addons/website/static/src/components/website_loader/website_loader.xml:0
 #, python-format
 msgid "pointer to build the perfect page in 7 steps."
-msgstr "pointer pentru a construi pagina perfectă în 7 pași."
+msgstr "indicatorul pentru a construi pagina perfectă în 7 pași."
 
 #. module: website
 #: model_terms:ir.ui.view,arch_db:website.snippets
